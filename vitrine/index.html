@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Isac Achadinhos — Vitrine de Ofertas</title>
+    <meta name="description" content="Vitrine de ofertas e achadinhos com links de afiliados.">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="topo">
+        <div class="topo-marca">
+            <h1>Isac <span>Achadinhos</span></h1>
+            <p class="tagline">Os melhores achadinhos da internet, garimpados para você 💛</p>
+        </div>
+        <nav class="topo-social" id="social-topo" aria-label="Redes sociais"></nav>
+    </header>
+
+    <div class="layout">
+        <aside class="menu-lateral" aria-label="Lojas">
+            <h2>Lojas</h2>
+            <ul id="menu-lojas"></ul>
+        </aside>
+
+        <main class="conteudo">
+            <section class="barra-ordem">
+                <label for="seletor-ordem">Ordenar:</label>
+                <select id="seletor-ordem">
+                    <option value="chegada" selected>Ordem de chegada</option>
+                    <option value="baratos">Mais baratos</option>
+                    <option value="caros">Mais caros</option>
+                </select>
+            </section>
+
+            <section aria-label="Destaques">
+                <h2>Em destaque — os mais baratos</h2>
+                <div class="grade" id="grade-destaque"></div>
+            </section>
+
+            <div id="secoes-lojas"></div>
+        </main>
+    </div>
+
+    <footer class="rodape">
+        <p>Isac Achadinhos — links de afiliados. Preços podem mudar nas lojas.</p>
+        <nav class="rodape-social" id="social-rodape" aria-label="Redes sociais"></nav>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+{
+  "_aviso": "Pixel DESLIGADO por padrão (dry-run). Para medir visitas, preencha meta_pixel_id e mude meta_pixel_enabled para true. Nunca coloque token da Meta aqui.",
+  "meta_pixel_enabled": false,
+  "meta_pixel_id": "",
+  "moeda": "BRL",
+  "destaque_quantidade": 3,
+  "por_loja_quantidade": 3
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if category %}Editar{% else %}Nova{% endif %} Categoria — Isac Achadinhos</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 600px; margin: 40px auto; padding: 20px; }
+        label { display: block; margin: 10px 0 4px; }
+        input, textarea { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+        button { margin-top: 14px; background: #ff9900; border: 0; padding: 10px 16px; border-radius: 4px; cursor: pointer; }
+        .error { background: #f8d7da; color: #721c24; padding: 10px; border-radius: 4px; margin-bottom: 12px; }
+        a { color: #ff9900; }
+    </style>
+</head>
+<body>
+    <p><a href="/admin/">← Voltar ao painel</a></p>
+    <h1>{% if category %}Editar{% else %}Nova{% endif %} Categoria</h1>
+    {% if error %}
+    <div class="error">{{ error }}</div>
+    {% endif %}
+    <form method="post" action="{{ action }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <label for="name">Nome</label>
+        <input id="name" name="name" type="text" required maxlength="200" value="{{ category.name if category else '' }}">
+        <label for="slug">Slug (letras minúsculas, números e hífens)</label>
+        <input id="slug" name="slug" type="text" required maxlength="200" pattern="[a-z0-9-]+" value="{{ category.slug if category else '' }}">
+        <label for="description">Descrição</label>
+        <textarea id="description" name="description" rows="3" maxlength="500">{{ category.description if category and category.description else '' }}</textarea>
+        <button type="submit">Salvar</button>
+    </form>
+</body>
+</html>

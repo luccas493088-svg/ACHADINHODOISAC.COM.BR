@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel — Isac Achadinhos</title>
+    <style>
+        :root {
+            --laranja: #ff9900;
+            --tinta: #1c1917;
+            --muted: #78716c;
+            --fundo: #faf7f2;
+            --cartao: #ffffff;
+            --borda: #e7e0d5;
+            --verde: #15803d;
+            --verde-fundo: #dcfce7;
+            --cinza-fundo: #e7e5e4;
+        }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: var(--fundo);
+            color: var(--tinta);
+        }
+        .topo {
+            background: #131921;
+            color: #fff;
+            padding: 12px 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+        .topo .marca { font-weight: bold; font-size: 17px; margin-right: auto; }
+        .topo .marca small { display: block; font-weight: normal; font-size: 12px; color: #d6d3d1; }
+        .topo nav a { color: var(--laranja); text-decoration: none; margin-right: 14px; font-size: 14px; }
+        .topo nav a:hover { text-decoration: underline; }
+        .topo .ola { font-size: 14px; }
+        .topo form { display: inline; margin: 0; }
+        .topo button.sair {
+            background: transparent;
+            color: #fff;
+            border: 1px solid #57534e;
+            border-radius: 999px;
+            padding: 6px 14px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+        .topo button.sair:hover { border-color: var(--laranja); color: var(--laranja); }
+        .conteudo { max-width: 1100px; margin: 0 auto; padding: 24px 20px 48px; }
+        .boas-vindas h1 { margin: 0 0 4px; font-size: 26px; }
+        .boas-vindas p { margin: 0 0 16px; color: var(--muted); }
+        .resumo { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; }
+        .resumo .chip {
+            background: var(--cartao);
+            border: 1px solid var(--borda);
+            border-radius: 999px;
+            padding: 8px 16px;
+            font-size: 14px;
+        }
+        .resumo .chip strong { font-size: 16px; }
+        .acoes-rapidas { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 28px; }
+        .btn {
+            display: inline-block;
+            background: var(--laranja);
+            color: #1c1917;
+            font-weight: bold;
+            padding: 10px 18px;
+            border-radius: 999px;
+            text-decoration: none;
+            font-size: 14px;
+            border: 0;
+        }
+        .btn:hover { filter: brightness(0.95); }
+        .btn-contorno {
+            background: transparent;
+            border: 1px solid var(--borda);
+            color: var(--tinta);
+            font-weight: normal;
+        }
+        section.bloco { margin-bottom: 32px; }
+        section.bloco > h2 { font-size: 20px; margin: 0 0 4px; }
+        section.bloco > p.sub { margin: 0 0 14px; color: var(--muted); font-size: 14px; }
+        .grade { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 14px; }
+        .cartao {
+            background: var(--cartao);
+            border: 1px solid var(--borda);
+            border-radius: 16px;
+            padding: 16px;
+            box-shadow: 0 1px 3px rgba(28, 25, 23, 0.06);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .cartao h3 { margin: 0; font-size: 16px; }
+        .cartao .slug { font-size: 12px; color: var(--muted); word-break: break-all; }
+        .cartao .preco { font-size: 22px; font-weight: bold; }
+        .cartao .linha-acoes { display: flex; gap: 8px; margin-top: auto; padding-top: 8px; }
+        .cartao .linha-acoes form { display: inline; margin: 0; }
+        .link-editar { font-size: 13px; color: var(--tinta); text-decoration: none; border: 1px solid var(--borda); border-radius: 999px; padding: 6px 12px; }
+        .link-editar:hover { border-color: var(--laranja); }
+        .btn-excluir {
+            font-size: 13px;
+            color: #991b1b;
+            background: transparent;
+            border: 1px solid #fecaca;
+            border-radius: 999px;
+            padding: 6px 12px;
+            cursor: pointer;
+        }
+        .btn-excluir:hover { background: #fef2f2; }
+        .selo {
+            align-self: flex-start;
+            font-size: 12px;
+            border-radius: 999px;
+            padding: 3px 10px;
+            background: var(--cinza-fundo);
+            color: var(--muted);
+        }
+        .selo.ativa { background: var(--verde-fundo); color: var(--verde); }
+        .vazio {
+            border: 1px dashed var(--borda);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            color: var(--muted);
+        }
+        .vazio a { color: var(--laranja); }
+    </style>
+</head>
+<body>
+    <header class="topo">
+        <div class="marca">Isac Achadinhos<small>Painel administrativo</small></div>
+        <nav>
+            <a href="#categorias">Categorias</a>
+            <a href="#campanhas">Campanhas</a>
+            <a href="#produtos">Produtos</a>
+            <a href="/admin/metrics">Métricas</a>
+        </nav>
+        <span class="ola">Olá, {{ username }}!</span>
+        <form action="/admin/logout" method="post">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+            <button type="submit" class="sair">Sair</button>
+        </form>
+    </header>
+
+    <main class="conteudo">
+        <div class="boas-vindas">
+            <h1>Sua vitrine em um olhar</h1>
+            <p>Gerencie categorias, campanhas e produtos. Tudo que mudar aqui reflete na loja.</p>
+        </div>
+
+        <div class="resumo">
+            <span class="chip"><strong>{{ categories|length }}</strong> categorias</span>
+            <span class="chip"><strong>{{ campaigns|length }}</strong> campanhas</span>
+            <span class="chip"><strong>{{ products|length }}</strong> produtos</span>
+        </div>
+
+        <div class="acoes-rapidas">
+            <a href="/admin/categories/new" class="btn">+ Nova categoria</a>
+            <a href="/admin/campaigns/new" class="btn">+ Nova campanha</a>
+            <a href="/admin/products/new" class="btn">+ Novo produto</a>
+            <a href="/admin/metrics" class="btn btn-contorno">Ver métricas</a>
+        </div>
+
+        <section class="bloco" id="categorias">
+            <h2>Categorias</h2>
+            <p class="sub">Organizam os produtos da vitrine.</p>
+            {% if categories %}
+            <div class="grade">
+                {% for cat in categories %}
+                <div class="cartao">
+                    <h3>{{ cat.name }}</h3>
+                    <span class="slug">{{ cat.slug }}</span>
+                    <div class="linha-acoes">
+                        <a href="/admin/categories/{{ cat.id }}/edit" class="link-editar">Editar</a>
+                        <form method="post" action="/admin/categories/{{ cat.id }}">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                            <button type="submit" class="btn-excluir">Excluir</button>
+                        </form>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="vazio">Nenhuma categoria ainda. <a href="/admin/categories/new">Criar a primeira</a></div>
+            {% endif %}
+        </section>
+
+        <section class="bloco" id="campanhas">
+            <h2>Campanhas</h2>
+            <p class="sub">Agrupam ofertas por período ou ação (ex.: Black Friday).</p>
+            {% if campaigns %}
+            <div class="grade">
+                {% for camp in campaigns %}
+                <div class="cartao">
+                    <span class="selo {% if camp.is_active %}ativa{% endif %}">{% if camp.is_active %}Ativa{% else %}Inativa{% endif %}</span>
+                    <h3>{{ camp.name }}</h3>
+                    <span class="slug">{{ camp.slug }}</span>
+                    <div class="linha-acoes">
+                        <a href="/admin/campaigns/{{ camp.id }}/edit" class="link-editar">Editar</a>
+                        <form method="post" action="/admin/campaigns/{{ camp.id }}" style="display:inline;margin:0;">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                            <button type="submit" class="btn-excluir">Excluir</button>
+                        </form>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="vazio">Nenhuma campanha ainda. <a href="/admin/campaigns/new">Criar a primeira</a></div>
+            {% endif %}
+        </section>
+
+        <section class="bloco" id="produtos">
+            <h2>Produtos recentes</h2>
+            <p class="sub">Os últimos cadastrados no catálogo.</p>
+            {% if products %}
+            <div class="grade">
+                {% for prod in products %}
+                <div class="cartao">
+                    <h3>{{ prod.name }}</h3>
+                    <div class="preco">R$ {{ prod.price }}</div>
+                    <div class="linha-acoes">
+                        <a href="/admin/products/{{ prod.id }}/edit" class="link-editar">Editar</a>
+                        <form method="post" action="/admin/products/{{ prod.id }}" style="display:inline;margin:0;">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                            <button type="submit" class="btn-excluir">Excluir</button>
+                        </form>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <div class="vazio">Nenhum produto ainda. <a href="/admin/products/new">Cadastrar o primeiro</a></div>
+            {% endif %}
+        </section>
+    </main>
+</body>
+</html>

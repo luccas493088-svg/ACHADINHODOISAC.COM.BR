@@ -1,0 +1,6 @@
+# Dependências de desenvolvimento — Fase 1 (Isac Achadinhos)
+pytest
+pytest-asyncio
+ruff
+mypy
+pytest-cov

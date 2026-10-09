@@ -1,0 +1,70 @@
+{
+  "_aviso": "ARQUIVO DE EXEMPLO — preencha com seus links reais. Domínios example.com são fictícios (reservados, não abrem loja real). Nunca coloque senhas, tokens ou chaves de API aqui.",
+  "_lojas_validas": ["TikTok Shop", "Monetizze", "Mercado Livre", "AliExpress"],
+  "produtos": [
+    {
+      "loja": "TikTok Shop",
+      "nome": "Suporte de Celular Articulado (exemplo)",
+      "preco": 29.9,
+      "imagem": "",
+      "link_afiliado": "https://www.example.com/ofertas/suporte-celular",
+      "data_cadastro": "2026-09-02"
+    },
+    {
+      "loja": "TikTok Shop",
+      "nome": "Mini Umidificador USB (exemplo)",
+      "preco": 45.5,
+      "imagem": "",
+      "link_afiliado": "https://www.example.com/ofertas/mini-umidificador",
+      "data_cadastro": "2026-09-20"
+    },
+    {
+      "loja": "Monetizze",
+      "nome": "Curso Organização Financeira (exemplo)",
+      "preco": 97.0,
+      "imagem": "",
+      "link_afiliado": "https://www.example.com/ofertas/curso-financas",
+      "data_cadastro": "2026-08-15"
+    },
+    {
+      "loja": "Monetizze",
+      "nome": "E-book Receitas Fit (exemplo)",
+      "preco": 19.9,
+      "imagem": "",
+      "link_afiliado": "https://www.example.com/ofertas/ebook-receitas",
+      "data_cadastro": "2026-09-25"
+    },
+    {
+      "loja": "Mercado Livre",
+      "nome": "Fone Bluetooth TWS (exemplo)",
+      "preco": 89.9,
+      "imagem": "",
+      "link_afiliado": "https://www.example.com/ofertas/fone-bluetooth",
+      "data_cadastro": "2026-09-01"
+    },
+    {
+      "loja": "Mercado Livre",
+      "nome": "Luminária LED Inteligente (exemplo)",
+      "preco": 59.9,
+      "imagem": "",
+      "link_afiliado": "https://www.example.com/ofertas/luminaria-led",
+      "data_cadastro": "2026-09-10"
+    },
+    {
+      "loja": "AliExpress",
+      "nome": "Teclado Mecânico Mini (exemplo)",
+      "preco": 149.9,
+      "imagem": "",
+      "link_afiliado": "https://www.example.com/ofertas/teclado-mini",
+      "data_cadastro": "2026-08-20"
+    },
+    {
+      "loja": "AliExpress",
+      "nome": "Cabo USB-C 2m (exemplo)",
+      "preco": 15.9,
+      "imagem": "",
+      "link_afiliado": "https://www.example.com/ofertas/cabo-usbc",
+      "data_cadastro": "2026-09-05"
+    }
+  ]
+}

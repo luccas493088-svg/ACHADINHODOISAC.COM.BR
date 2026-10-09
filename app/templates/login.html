@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login — Isac Achadinhos</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 420px; margin: 60px auto; padding: 20px; }
+        .card { border: 1px solid #e7e7e7; border-radius: 8px; padding: 24px; }
+        .error { background: #f8d7da; color: #721c24; padding: 10px; border-radius: 4px; margin-bottom: 12px; }
+        label { display: block; margin: 10px 0 4px; }
+        input { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+        button { margin-top: 14px; background: #ff9900; border: 0; padding: 10px 16px; border-radius: 4px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Isac Achadinhos</h1>
+        <p>Acesso administrativo</p>
+        {% if error %}
+        <div class="error">{{ error }}</div>
+        {% endif %}
+        <form method="post" action="/admin/login">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+            <label for="username">Usuário</label>
+            <input id="username" name="username" type="text" required minlength="3" autocomplete="username">
+            <label for="password">Senha</label>
+            <input id="password" name="password" type="password" required minlength="6" autocomplete="current-password">
+            <button type="submit">Entrar</button>
+        </form>
+    </div>
+</body>
+</html>

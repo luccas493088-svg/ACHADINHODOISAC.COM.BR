@@ -1,0 +1,18 @@
+# Fase 7 — nunca levar segredos, ambientes locais ou git para a imagem
+.env
+.env.*
+!.env.example
+.venv/
+venv/
+.git/
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.db
+tests/
+.gitignore
+isac_achadinhos.html
+oppo_a5.jpg
+bellemiststore/

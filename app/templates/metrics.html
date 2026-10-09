@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Métricas — Isac Achadinhos</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 1000px; margin: 0 auto; padding: 20px; }
+        .navbar { background: #131921; color: #fff; padding: 10px 20px; margin-bottom: 20px; }
+        .navbar a { color: #ff9900; margin-right: 15px; text-decoration: none; }
+        .cards { display: flex; gap: 12px; margin-bottom: 20px; }
+        .card { flex: 1; border: 1px solid #e7e7e7; border-radius: 8px; padding: 16px; text-align: center; }
+        .card .num { font-size: 28px; font-weight: bold; color: #0f1111; }
+        .card .lbl { color: #565959; }
+        .section { background: #fff; border: 1px solid #e7e7e7; border-radius: 8px; padding: 20px; margin-bottom: 20px; }
+        .table { width: 100%; border-collapse: collapse; }
+        .table th, .table td { padding: 8px 12px; border-bottom: 1px solid #e7e7e7; text-align: left; }
+        .table th { background: #f8f9fa; }
+        a { color: #ff9900; }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="/admin/">← Painel</a>
+    </div>
+    <h1>Métricas e Campanhas</h1>
+
+    <div class="cards">
+        <div class="card"><div class="num">{{ summary.total_clicks }}</div><div class="lbl">Cliques totais</div></div>
+        <div class="card"><div class="num">{{ summary.active_products }}</div><div class="lbl">Produtos ativos</div></div>
+        <div class="card"><div class="num">{{ summary.active_campaigns }}</div><div class="lbl">Campanhas ativas</div></div>
+    </div>
+
+    <div class="section">
+        <h2>Top produtos</h2>
+        <table class="table">
+            <thead><tr><th>Produto</th><th>Slug</th><th>Cliques</th></tr></thead>
+            <tbody>
+                {% for p in summary.top_products %}
+                <tr><td>{{ p.product_name }}</td><td>{{ p.product_slug }}</td><td>{{ p.clicks }}</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>Por campanha</h2>
+        <table class="table">
+            <thead><tr><th>Campanha</th><th>Produtos</th><th>Cliques</th></tr></thead>
+            <tbody>
+                {% for c in summary.by_campaign %}
+                <tr><td>{{ c.campaign_name }}</td><td>{{ c.products }}</td><td>{{ c.clicks }}</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <div class="section">
+        <h2>Por dia (últimos 30 dias)</h2>
+        <table class="table">
+            <thead><tr><th>Data</th><th>Cliques</th></tr></thead>
+            <tbody>
+                {% for d in summary.by_day %}
+                <tr><td>{{ d.date }}</td><td>{{ d.clicks }}</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,39 @@
+[build-system]
+requires = ["poetry-core >= 1.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[project]
+name = "isac_achadinhos"
+version = "1.0.0"
+description = "Plataforma de ofertas e afiliados (em construção)"
+requires-python = ">=3.10"
+dependencies = [
+    "fastapi",
+    "uvicorn[standard]",
+    "sqlalchemy>=2.0",
+    "alembic",
+    "pydantic-settings>=2.0",
+    "jinja2",
+    "python-multipart",
+    "argon2-cffi",
+    "pyjwt",
+    "slowapi",
+    "httpx",
+    "python-dotenv",
+    "psycopg[binary]",
+    "redis",
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+select = ["E", "F", "W", "B"]
+
+[tool.ruff.lint]
+# B008 conflita com o idioma oficial de DI do FastAPI (Depends() nos defaults)
+ignore = ["B008"]
+
+[tool.mypy]
+python_version = "3.10"
+disallow_untyped_defs = false
+warn_return_any = true
