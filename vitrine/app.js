@@ -5,7 +5,7 @@
  */
 "use strict";
 
-const LOJAS = ["TikTok Shop", "Monetizze", "Mercado Livre", "AliExpress"];
+const LOJAS = ["Amazon", "Mercado Livre", "Monetizze"];
 
 const estado = {
     loja: "Todas",
