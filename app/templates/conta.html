@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha conta — Isac Achadinhos</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 420px; margin: 60px auto; padding: 20px; }
+        .card { border: 1px solid #e7e7e7; border-radius: 8px; padding: 24px; }
+        label { display: block; margin: 10px 0 4px; font-size: 0.85rem; color: #666; }
+        .valor { font-size: 1rem; }
+        a { color: #b26a00; }
+        form { margin-top: 18px; }
+        button { background: #ff9900; border: 0; padding: 10px 16px; border-radius: 4px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Minha conta</h1>
+        <p>Olá, <strong>{{ user.username }}</strong>!</p>
+        <label>E-mail</label>
+        <p class="valor">{{ email or "—" }}</p>
+        <p><a href="/vitrine/">Ver vitrine de ofertas</a></p>
+        <form method="post" action="/sair">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+            <button type="submit">Sair da conta</button>
+        </form>
+    </div>
+</body>
+</html>

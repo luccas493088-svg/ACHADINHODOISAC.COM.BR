@@ -1,23 +1,6 @@
-# Ambientes virtuais
-venv/
 .venv/
-
-# Python
 __pycache__/
 *.pyc
-
-# Segredos - nunca versionar (.env.example é a exceção)
 .env
-.env.*
-!.env.example
-
-# JavaScript / Node
-node_modules/
-
-# Ferramentas de qualidade e teste
-.pytest_cache/
-.mypy_cache/
-.ruff_cache/
-
-# Bancos SQLite locais de teste
 *.db
+/tmp/

@@ -15,6 +15,7 @@ from app.limiter import limiter
 
 from app.config import Settings
 from app.routers.auth import router as auth_router
+from app.routers.accounts import router as accounts_router
 from app.routers.products import router as products_router
 from app.routers.categories import router as categories_router
 from app.routers.campaigns import router as campaigns_router
@@ -131,6 +132,7 @@ async def home(request: Request):
 
 # --- API Routers ---
 app.include_router(auth_router)
+app.include_router(accounts_router)
 app.include_router(products_router)
 app.include_router(categories_router)
 app.include_router(campaigns_router)

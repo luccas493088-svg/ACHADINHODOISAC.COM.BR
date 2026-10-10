@@ -3,12 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Isac Achadinhos - Ofertas do Dia</title>
+    <title>Isac Achadinhos — Ofertas do Dia</title>
+    <meta name="description" content="Os melhores achadinhos da internet, garimpados para você.">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; background: #f3f3f3; color: #0f1111; }
+        .topo { background: #131921; color: #fff; padding: 28px 20px; text-align: center; }
+        .marca { font-size: 2rem; font-weight: bold; color: #ff9900; }
+        .tagline { color: #ccc; margin: 8px 0 0; }
+        .acoes { text-align: center; margin: 28px 16px; }
+        .btn { display: inline-block; margin: 6px; padding: 12px 22px; border-radius: 6px; text-decoration: none; font-size: 1rem; }
+        .btn-principal { background: #ff9900; color: #131921; font-weight: bold; }
+        .btn-secundario { background: #fff; border: 1px solid #ccc; color: #0f1111; }
+        .vitrine-link { text-align: center; margin: 10px 0 40px; }
+        .rodape { text-align: center; color: #888; font-size: 0.85rem; padding: 20px; }
+    </style>
 </head>
 <body>
-    <h1>Isac Achadinhos</h1>
-    <p>Fase 1 - Implementação concluída</p>
-    <p>A aplicação FastAPI com Jinja2 está funcionando corretamente.</p>
-    <a href="/health">Verificar health check</a>
+    <header class="topo">
+        <div class="marca">Isac Achadinhos</div>
+        <p class="tagline">Os melhores achadinhos da internet, garimpados para você</p>
+    </header>
+
+    <main>
+        <section class="acoes">
+            {% if request.session.get('user') %}
+                <p>Olá, <strong>{{ request.session.user.username }}</strong>!</p>
+                <a class="btn btn-principal" href="/conta">Minha conta</a>
+                <a class="btn btn-secundario" href="/vitrine/">Ver ofertas</a>
+            {% else %}
+                <a class="btn btn-principal" href="/cadastro">Cadastre-se grátis</a>
+                <a class="btn btn-secundario" href="/login">Entrar</a>
+            {% endif %}
+        </section>
+        <p class="vitrine-link"><a href="/vitrine/">Ver vitrine de ofertas</a> · <a href="/admin/login">Painel administrativo</a></p>
+    </main>
+
+    <footer class="rodape">
+        <p>Isac Achadinhos — links de afiliados. Preços podem mudar nas lojas.</p>
+    </footer>
 </body>
 </html>

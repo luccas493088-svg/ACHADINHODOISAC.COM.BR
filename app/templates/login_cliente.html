@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrar — Isac Achadinhos</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 420px; margin: 60px auto; padding: 20px; }
+        .card { border: 1px solid #e7e7e7; border-radius: 8px; padding: 24px; }
+        .error { background: #f8d7da; color: #721c24; padding: 10px; border-radius: 4px; margin-bottom: 12px; }
+        label { display: block; margin: 10px 0 4px; }
+        input { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+        button { margin-top: 14px; background: #ff9900; border: 0; padding: 10px 16px; border-radius: 4px; cursor: pointer; }
+        .troca { margin-top: 14px; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Isac Achadinhos</h1>
+        <p>Entre com sua conta de cliente</p>
+        {% if error %}
+        <div class="error">{{ error }}</div>
+        {% endif %}
+        <form method="post" action="/login">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+            <label for="username">Usuário ou e-mail</label>
+            <input id="username" name="username" type="text" required autocomplete="username">
+            <label for="password">Senha</label>
+            <input id="password" name="password" type="password" required minlength="6" autocomplete="current-password">
+            <button type="submit">Entrar</button>
+        </form>
+        <p class="troca">Novo por aqui? <a href="/cadastro">Crie sua conta</a></p>
+    </div>
+</body>
+</html>
