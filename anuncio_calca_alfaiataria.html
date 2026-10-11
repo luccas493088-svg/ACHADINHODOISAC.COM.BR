@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kit 2 Calça Pantalona Feminina Alfaiataria Elegante c/ Cinto</title>
+<meta name="description" content="Kit 2 Calça Pantalona Feminina Alfaiataria Elegante c/ Cinto - veja as fotos e confira no Mercado Livre.">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Arial,Helvetica,sans-serif;background:#fff;color:#111}
+  .topo{background:#111;color:#fff;padding:12px 16px}
+  .topo a{color:#ffd400;text-decoration:none;font-weight:bold}
+  main{max-width:900px;margin:0 auto;padding:16px}
+  h1{font-size:1.4rem;margin:12px 0}
+  .slides{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;border-radius:12px;background:#f3f3f3}
+  .slides img{flex:0 0 100%;width:100%;max-height:80vh;object-fit:contain;scroll-snap-align:center}
+  .miniaturas{display:flex;gap:8px;margin-top:8px}
+  .miniaturas img{width:64px;height:64px;object-fit:cover;border-radius:8px;border:2px solid transparent;cursor:pointer;background:#f3f3f3}
+  .miniaturas img.ativa{border-color:#ffd400}
+  ul{line-height:1.7;padding-left:20px}
+  .cta{display:block;text-align:center;background:#ffd400;color:#111;font-weight:bold;font-size:1.1rem;text-decoration:none;padding:16px;border-radius:12px;margin:20px 0}
+  .aviso{font-size:.8rem;color:#666;margin-top:24px}
+</style>
+</head>
+<body>
+<div class="topo"><a href="index.html">&larr; Voltar para a vitrine</a></div>
+<main>
+  <h1>Kit 2 Calça Pantalona Feminina Alfaiataria Elegante c/ Cinto</h1>
+  <div class="slides" id="slides">
+    <img src="imagens/calca_alfaiataria_1.webp" alt="Calça pantalona alfaiataria preta com cinto">
+    <img src="imagens/calca_alfaiataria_2.webp" alt="Calça pantalona alfaiataria cinza e detalhes do tecido" loading="lazy">
+  </div>
+  <div class="miniaturas" id="mini">
+    <img src="imagens/calca_alfaiataria_1.webp" alt="Foto 1" class="ativa">
+    <img src="imagens/calca_alfaiataria_2.webp" alt="Foto 2">
+  </div>
+  <ul>
+    <li>Kit com 2 calças pantalona</li>
+    <li>Tecido de alfaiataria leve e macio, com toque suave e caimento fluido</li>
+    <li>Cinto incluso</li>
+    <li>Cintura alta, que alonga a silhueta</li>
+    <li>Casual elegante: do trabalho ao happy hour</li>
+  </ul>
+  <a class="cta" href="https://meli.la/22zeXPR" target="_blank" rel="sponsored noopener noreferrer">Ver no Mercado Livre</a>
+  <p class="aviso">Como afiliado do Mercado Livre, posso receber uma comissão pelas compras feitas pelo link, sem custo extra para você. Preço, estoque e condições podem mudar: confirme no anúncio.</p>
+</main>
+<script>
+(function(){
+  var s=document.getElementById('slides');
+  var t=document.querySelectorAll('#mini img');
+  t.forEach(function(el,i){ el.addEventListener('click',function(){ s.scrollTo({left:s.clientWidth*i,behavior:'smooth'}); }); });
+  s.addEventListener('scroll',function(){
+    var i=Math.round(s.scrollLeft/s.clientWidth);
+    t.forEach(function(el,k){ el.classList.toggle('ativa',k===i); });
+  });
+})();
+</script>
+</body>
+</html>
