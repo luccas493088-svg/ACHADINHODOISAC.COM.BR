@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Isac Achadinhos - Ofertas do Dia</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      background: #e3e6e6;
+      color: #0f1111;
+    }
+    .topbar {
+      background: #131921;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 8px 20px;
+      flex-wrap: wrap;
+    }
+    .logo {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #ff9900;
+      text-decoration: none;
+      border: 2px solid #ff9900;
+      padding: 4px 10px;
+      border-radius: 6px;
+      white-space: nowrap;
+    }
+    .deliver { font-size: 0.8rem; color: #ccc; line-height: 1.3; }
+    .search { flex: 1; display: flex; min-width: 220px; }
+    .search select {
+      border: none;
+      background: #f3f3f3;
+      padding: 0 8px;
+      border-radius: 4px 0 0 4px;
+      font-size: 0.85rem;
+      color: #555;
+    }
+    .search input {
+      flex: 1;
+      padding: 9px 12px;
+      border: none;
+      font-size: 1rem;
+      outline: none;
+    }
+    .search button {
+      background: #febd69;
+      border: none;
+      padding: 0 14px;
+      border-radius: 0 4px 4px 0;
+      cursor: pointer;
+      font-size: 1.1rem;
+    }
+    .search button:hover { background: #f3a847; }
+    .toplink {
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.82rem;
+      line-height: 1.3;
+      padding: 4px;
+    }
+    .toplink:hover { text-decoration: underline; }
+    .toplink strong { font-size: 0.95rem; }
+    .cart { font-size: 0.95rem; }
+    .subnav {
+      background: #232f3e;
+      color: #fff;
+      display: flex;
+      gap: 16px;
+      padding: 8px 20px;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      white-space: nowrap;
+    }
+    .subnav a { color: #fff; text-decoration: none; }
+    .subnav a:hover { text-decoration: underline; }
+    .hero {
+      background: linear-gradient(90deg, #ff9900 0%, #ff9900 30%, #232f3e 30%);
+      color: #fff;
+      padding: 45px 30px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .hero h1 { font-size: 2.4rem; color: #fff; margin-bottom: 8px; }
+    .hero p { font-size: 1.15rem; margin-bottom: 18px; }
+    .hero .btn {
+      display: inline-block;
+      background: #ffd814;
+      color: #0f1111;
+      font-weight: bold;
+      padding: 13px 35px;
+      border-radius: 20px;
+      text-decoration: none;
+    }
+    .hero .btn:hover { background: #f7ca00; }
+    .hero-badge {
+      background: #cc0c39;
+      color: #fff;
+      font-size: 2rem;
+      font-weight: bold;
+      padding: 25px 35px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+    .hero-badge small { display: block; font-size: 0.95rem; font-weight: normal; }
+    .section {
+      max-width: 1300px;
+      margin: 22px auto;
+      background: #fff;
+      padding: 22px;
+      border-radius: 8px;
+    }
+    .section h2 {
+      font-size: 1.45rem;
+      margin-bottom: 18px;
+      color: #0f1111;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+      gap: 18px;
+    }
+    .card {
+      border: 1px solid #e7e7e7;
+      border-radius: 8px;
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      transition: box-shadow 0.2s;
+    }
+    .card:hover { box-shadow: 0 2px 10px rgba(0,0,0,0.15); }
+    .card.anuncio {
+      grid-column: 1 / -1;
+      flex-direction: row;
+      align-items: center;
+      gap: 25px;
+      background: linear-gradient(90deg, #fff7e6, #fff);
+      border: 2px solid #ff9900;
+      padding: 25px;
+      flex-wrap: wrap;
+    }
+    .card.anuncio .img {
+      width: 180px;
+      height: 180px;
+      flex-shrink: 0;
+      font-size: 5rem;
+    }
+    .card.anuncio .detalhes { flex: 1; min-width: 260px; }
+    .card.anuncio h3 { font-size: 1.35rem; font-weight: bold; min-height: auto; margin-bottom: 6px; }
+    .card.anuncio ul {
+      margin: 12px 0;
+      padding-left: 20px;
+      font-size: 0.95rem;
+      line-height: 1.7;
+    }
+    .card.anuncio .preco-box { text-align: center; }
+    .card.anuncio .price { font-size: 2.2rem; color: #cc0c39; }
+    .card.anuncio a {
+      font-size: 1.1rem;
+      font-weight: bold;
+      padding: 14px 30px;
+      background: #ff9900;
+      border-radius: 8px;
+      display: inline-block;
+      margin-top: 10px;
+    }
+    .card.anuncio a:hover { background: #e68a00; }
+    .selo {
+      display: inline-block;
+      background: #007600;
+      color: #fff;
+      font-size: 0.78rem;
+      padding: 3px 8px;
+      border-radius: 3px;
+      margin-right: 6px;
+    }
+    .card .img {
+      background: #f7f8f8;
+      height: 140px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3.2rem;
+      overflow: hidden;
+    }
+    .card .img img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+    }
+    .badge {
+      background: #cc0c39;
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: bold;
+      padding: 3px 8px;
+      border-radius: 3px;
+      align-self: flex-start;
+    }
+    .badge.amarelo { background: #ff9900; color: #0f1111; }
+    .card h3 { font-size: 0.95rem; font-weight: normal; min-height: 38px; }
+    .stars { color: #ffa41c; font-size: 0.85rem; }
+    .price { font-size: 1.35rem; font-weight: bold; }
+    .old-price { font-size: 0.85rem; color: #565959; text-decoration: line-through; }
+    .frete { font-size: 0.82rem; color: #007600; }
+    .card a {
+      background: #ffd814;
+      padding: 9px;
+      border-radius: 20px;
+      text-align: center;
+      text-decoration: none;
+      color: #0f1111;
+      font-size: 0.9rem;
+      margin-top: auto;
+    }
+    .card a:hover { background: #f7ca00; }
+    .categorias {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 15px;
+    }
+    .cat {
+      background: #f7f8f8;
+      border: 1px solid #e7e7e7;
+      border-radius: 8px;
+      padding: 20px 10px;
+      text-align: center;
+      text-decoration: none;
+      color: #0f1111;
+      font-weight: bold;
+      font-size: 0.95rem;
+    }
+    .cat span { display: block; font-size: 2rem; margin-bottom: 8px; }
+    .cat:hover { background: #eaded1; }
+    footer { background: #232f3e; color: #fff; margin-top: 30px; }
+    .footer-top {
+      background: #37475a;
+      text-align: center;
+      padding: 16px;
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+    .footer-top:hover { background: #485769; }
+    .footer-cols {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 25px;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 35px 20px;
+    }
+    .footer-cols h4 { margin-bottom: 12px; font-size: 1rem; }
+    .footer-cols a {
+      display: block;
+      color: #ddd;
+      text-decoration: none;
+      font-size: 0.85rem;
+      margin-bottom: 8px;
+    }
+    .footer-cols a:hover { text-decoration: underline; }
+    .footer-bottom {
+      border-top: 1px solid #3a4553;
+      text-align: center;
+      padding: 22px;
+      font-size: 0.8rem;
+      color: #ddd;
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <a href="isac_achadinhos.html" class="logo">isac achadinhos</a>
+    <span class="deliver">Entrega em<br>Belo Horizonte 30000-000</span>
+    <div class="search">
+      <select>
+        <option>Todos os departamentos</option>
+        <option>Eletrônicos</option>
+        <option>Casa</option>
+        <option>Moda</option>
+        <option>Livros</option>
+        <option>Brinquedos</option>
+      </select>
+      <input type="text" placeholder="Pesquisar ofertas na Isac Achadinhos">
+      <button>&#128269;</button>
+    </div>
+    <a href="#" class="toplink">Olá, faça seu login<br><strong>Contas e Listas</strong></a>
+    <a href="#" class="toplink">Devoluções<br><strong>e Pedidos</strong></a>
+    <a href="#" class="toplink cart">&#128722;<br><strong>Carrinho</strong></a>
+  </div>
+
+  <div class="subnav">
+    <a href="#ofertas">&#127881; Ofertas do dia</a>
+    <a href="#">Todos os departamentos</a>
+    <a href="#">Eletrônicos</a>
+    <a href="#">Casa e Cozinha</a>
+    <a href="#">Moda</a>
+    <a href="#">Livros</a>
+    <a href="#">Brinquedos</a>
+    <a href="#">Beleza</a>
+    <a href="#">Pet Shop</a>
+        <a href="#">Venda na Isac</a>
+  </div>
+
+  <div class="hero">
+    <div>
+      <h1>Isac Achadinhos</h1>
+      <p>Achou, é nosso! Ofertas novas todos os dias com os melhores preços.</p>
+      <a href="#ofertas" class="btn">Ver ofertas agora</a>
+    </div>
+    <div class="hero-badge">
+      até 80% OFF
+      <small>Ofertas por tempo limitado</small>
+    </div>
+  </div>
+
+  <div class="section" id="ofertas">
+    <h2>&#128293; Ofertas do dia</h2>
+    <div class="grid">
+      <div class="card anuncio">
+        <div class="img">&#127891;</div>
+        <div class="detalhes">
+          <span class="badge">Oferta exclusiva</span>
+          <h3>CIE - Documento Nacional do Estudante (meia-entrada)</h3>
+          <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733; 4,9 (Centenas de estudantes economizando)</div>
+          <ul>
+            <li><strong>Meia-entrada em shows, cinemas, estádios, parques e eventos</strong> em todo o Brasil</li>
+            <li>Versões <strong>digital</strong> (receba no mesmo dia) e <strong>física</strong> com frete grátis</li>
+            <li>QR Code anti-fraude com validação oficial (ITI e ICP-Brasil)</li>
+            <li>Válido para qualquer idade, do infantil ao doutorado, presencial ou EAD</li>
+            <li>Sem mensalidades e sem limite de uso durante todo o ano</li>
+            <li>Documentos enviados no horário comercial: emissão no mesmo dia</li>
+          </ul>
+          <span class="selo">Compra 100% segura</span>
+          <span class="selo">Garantia de 7 dias</span>
+          <span class="selo">Suporte humanizado</span>
+        </div>
+        <div class="preco-box">
+          <span class="badge amarelo">A partir de</span>
+          <div class="old-price">De: R$ 79,90</div>
+          <div class="price">R$ 39,90</div>
+          <div class="frete">Carteira digital + física com frete GRÁTIS</div>
+          <a href="https://app.monetizze.com.br/r/ALB25841565" target="_blank" rel="noopener">Comprar agora</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="img"><img src="oppo_a5.jpg" alt="Smartphone OPPO A5"></div>
+        <span class="badge">31% off</span>
+        <h3>Smartphone OPPO A5 256GB 6GB RAM Bateria 6000mAh 45W 50MP AI Câmera Roxo</h3>
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734; 4,4 (82)</div>
+        <div class="price">R$ 1.021,10</div>
+        <div class="old-price">De: R$ 1.499,00</div>
+        <div class="frete">Frete GRÁTIS: Hoje no seu primeiro pedido</div>
+        <a href="https://www.amazon.com.br/Smartphone-OPPO-Bateria-6000mAh-Câmera/dp/B0FTGDNGRL?pd_rd_w=hvVEQ&content-id=amzn1.sym.b0af7da2-1c12-4b86-898b-87f2b2053ab7&pf_rd_p=b0af7da2-1c12-4b86-898b-87f2b2053ab7&pf_rd_r=26GE5GJFP5PR15R56GFH&pd_rd_wg=Gov86&pd_rd_r=896b7f83-3842-4ee3-a938-05b8ec186038&pd_rd_i=B0FTGDNGRL&ref_=pd_hp_d_r_btf_ofertasnovasmop_B0FTGDNGRL&th=1" target="_blank" rel="noopener">Ver oferta</a>
+      </div>
+      <div class="card">
+        <div class="img">&#127918;</div>
+        <span class="badge">25% off</span>
+        <h3>Console Gamer 500GB + 2 jogos</h3>
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733; 4,9 (5.432)</div>
+        <div class="price">R$ 2.999,00</div>
+        <div class="old-price">De: R$ 3.999,00</div>
+        <div class="frete">Frete GRÁTIS</div>
+        <a href="#">Ver oferta</a>
+      </div>
+      <div class="card">
+        <div class="img">&#9749;</div>
+        <span class="badge">50% off</span>
+        <h3>Cafeteira elétrica 15 xícaras</h3>
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734; 4,5 (1.092)</div>
+        <div class="price">R$ 99,90</div>
+        <div class="old-price">De: R$ 199,90</div>
+        <div class="frete">Frete GRÁTIS acima de R$ 19</div>
+        <a href="#">Ver oferta</a>
+      </div>
+      <div class="card">
+        <div class="img">&#128717;</div>
+        <span class="badge">55% off</span>
+        <h3>Tênis esportivo corrida unissex</h3>
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734; 4,4 (3.765)</div>
+        <div class="price">R$ 129,90</div>
+        <div class="old-price">De: R$ 289,90</div>
+        <div class="frete">Frete GRÁTIS</div>
+        <a href="#">Ver oferta</a>
+      </div>
+      <div class="card">
+        <div class="img">&#128187;</div>
+        <span class="badge">33% off</span>
+        <h3>Notebook 15.6" 8GB RAM SSD 256GB</h3>
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734; 4,7 (942)</div>
+        <div class="price">R$ 2.199,00</div>
+        <div class="old-price">De: R$ 3.299,00</div>
+        <div class="frete">Frete GRÁTIS</div>
+        <a href="#">Ver oferta</a>
+      </div>
+      <div class="card">
+        <div class="img">&#128246;</div>
+        <span class="badge">60% off</span>
+        <h3>Smartwatch fitness com GPS</h3>
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734; 4,3 (2.301)</div>
+        <div class="price">R$ 89,90</div>
+        <div class="old-price">De: R$ 224,90</div>
+        <div class="frete">Frete GRÁTIS acima de R$ 19</div>
+        <a href="#">Ver oferta</a>
+      </div>
+      <div class="card">
+        <div class="img">&#128295;</div>
+        <span class="badge">48% off</span>
+        <h3>Parafusadeira sem fio 18V 2 baterias</h3>
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733; 4,8 (1.567)</div>
+        <div class="price">R$ 159,90</div>
+        <div class="old-price">De: R$ 309,90</div>
+        <div class="frete">Frete GRÁTIS</div>
+        <a href="#">Ver oferta</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>&#127873; Achadinhos em destaque</h2>
+    <div class="grid">
+      <div class="card">
+        <div class="img">&#128214;</div>
+        <span class="badge amarelo">Mais vendido</span>
+        <h3>Livro best-seller - edição especial</h3>
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733; 4,9 (12.440)</div>
+        <div class="price">R$ 28,90</div>
+        <div class="old-price">De: R$ 59,90</div>
+        <div class="frete">Frete GRÁTIS acima de R$ 19</div>
+        <a href="#">Ver oferta</a>
+      </div>
+      <div class="card">
+        <div class="img">&#128293;</div>
+        <span class="badge">70% off</span>
+        <h3>Kit skin care facial 5 itens</h3>
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734; 4,2 (654)</div>
+        <div class="price">R$ 59,90</div>
+        <div class="old-price">De: R$ 199,90</div>
+        <div class="frete">Frete GRÁTIS</div>
+        <a href="#">Ver oferta</a>
+      </div>
+      <div class="card">
+        <div class="img">&#128054;</div>
+        <span class="badge">40% off</span>
+        <h3>Ração premium cães adultos 15kg</h3>
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734; 4,6 (890)</div>
+        <div class="price">R$ 119,90</div>
+        <div class="old-price">De: R$ 199,90</div>
+        <div class="frete">Frete GRÁTIS</div>
+        <a href="#">Ver oferta</a>
+      </div>
+      <div class="card">
+        <div class="img">&#127912;</div>
+        <span class="badge">35% off</span>
+        <h3>Kit arte e pintura 120 peças</h3>
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734; 4,5 (445)</div>
+        <div class="price">R$ 79,90</div>
+        <div class="old-price">De: R$ 122,90</div>
+        <div class="frete">Frete GRÁTIS acima de R$ 19</div>
+        <a href="#">Ver oferta</a>
+      </div>
+      <div class="card">
+        <div class="img">&#129517;</div>
+        <span class="badge">60% off</span>
+        <h3>Kit ferramentas 120 peças com maleta</h3>
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734; 4,4 (1.203)</div>
+        <div class="price">R$ 89,90</div>
+        <div class="old-price">De: R$ 224,90</div>
+        <div class="frete">Frete GRÁTIS</div>
+        <a href="#">Ver oferta</a>
+      </div>
+      <div class="card">
+        <div class="img">&#128096;</div>
+        <span class="badge">50% off</span>
+        <h3>Camiseta algodão premium (vários cores)</h3>
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734; 4,1 (2.876)</div>
+        <div class="price">R$ 34,90</div>
+        <div class="old-price">De: R$ 69,90</div>
+        <div class="frete">Frete GRÁTIS acima de R$ 19</div>
+        <a href="#">Ver oferta</a>
+      </div>
+      <div class="card">
+        <div class="img">&#128246;</div>
+        <span class="badge">28% off</span>
+        <h3>Relógio smartwatch com chamadas</h3>
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9734; 4,0 (768)</div>
+        <div class="price">R$ 179,90</div>
+        <div class="old-price">De: R$ 249,90</div>
+        <div class="frete">Frete GRÁTIS</div>
+        <a href="#">Ver oferta</a>
+      </div>
+      <div class="card">
+        <div class="img">&#127908;</div>
+        <span class="badge amarelo">Lançamento</span>
+        <h3>Caixa de som bluetooth à prova d'água</h3>
+        <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733; 4,7 (1.112)</div>
+        <div class="price">R$ 139,90</div>
+        <div class="old-price">De: R$ 199,90</div>
+        <div class="frete">Frete GRÁTIS</div>
+        <a href="#">Ver oferta</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>&#128193; Comprar por categoria</h2>
+    <div class="categorias">
+      <a href="#" class="cat"><span>&#128241;</span>Eletrônicos</a>
+      <a href="#" class="cat"><span>&#127968;</span>Casa</a>
+      <a href="#" class="cat"><span>&#128087;</span>Moda</a>
+      <a href="#" class="cat"><span>&#128214;</span>Livros</a>
+      <a href="#" class="cat"><span>&#127918;</span>Brinquedos</a>
+      <a href="#" class="cat"><span>&#128138;</span>Beleza</a>
+      <a href="#" class="cat"><span>&#128054;</span>Pet Shop</a>
+      <a href="#" class="cat"><span>&#9881;&#65039;</span>Ferramentas</a>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">Voltar ao topo</div>
+    <div class="footer-cols">
+      <div>
+        <h4>Conheça a Isac</h4>
+        <a href="#">Sobre nós</a>
+        <a href="#">Carreiras</a>
+        <a href="#">Imprensa</a>
+      </div>
+      <div>
+        <h4>Ganhe dinheiro</h4>
+    <a href="#">Venda na Isac</a>
+        <a href="#">Programa de afiliados</a>
+        <a href="#">Anuncie seus produtos</a>
+      </div>
+      <div>
+        <h4>Meios de pagamento</h4>
+        <a href="#">Cartão de crédito</a>
+        <a href="#">Pix</a>
+        <a href="#">Parcelamento</a>
+      </div>
+      <div>
+        <h4>Precisa de ajuda?</h4>
+        <a href="#">Sua conta</a>
+        <a href="#">Frete e prazo</a>
+        <a href="#">Devoluções</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Isac Achadinhos</p>
+      <p style="margin-top:8px;">&copy; 2026 Isac Achadinhos &ndash; Achou, é nosso!</p>
+    </div>
+  </footer>
+</body>
+</html>
